@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+        color: #424b54;
+        background: #ffffff;
+      }
+
+      h1,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      header,
+      footer {
+        background: #424b54;
+        color: #ffffff;
+        padding: 10px 0;
+      }
+
+      section {
+        padding: 40px 0;
+        border-bottom: 1px solid #93a8ac;
+      }
+
+      .image {
+        background: #93a8ac;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-content,
+      .gallery-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px;
+      }
+
+      .testimonial .image {
+        width: 80px;
+        height: 80px;
+      }
+
+      img.image {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 768px) {
+        .hero-content,
+        .gallery-row,
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-row.reverse .image {
+          order: -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h2>This is the Header section</h2>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <h2>This is the Hero section</h2>
+        <div class="hero-content">
+          <div>
+            <h1>This is an H1</h1>
+            <p>This is a paragraph.</p>
+          </div>
+          <img class="image" src="hero+1.png" alt="Hero image">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>This is the Testimonial section</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <div class="image">Photo</div>
+            <h3>Juan Dela Cruz</h3>
+            <p>This is a paragraph.</p>
+          </div>
+          <div class="testimonial">
+            <div class="image">Photo</div>
+            <h3>Mark Dimalanta</h3>
+            <p>This is a paragraph.</p>
+          </div>
+          <div class="testimonial">
+            <div class="image">Photo</div>
+            <h3>Arnold De Guzman</h3>
+            <p>This is a paragraph.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>This is the Gallery section</h2>
+        <div class="gallery-row">
+          <img class="image" src="image+1.png" alt="Image 1">
+          <p>This is a text.</p>
+        </div>
+        <div class="gallery-row reverse">
+          <p>This is a text.</p>
+          <img class="image" src="image+2.png" alt="Image 2">
+        </div>
+        <div class="gallery-row">
+          <img class="image" src="image+3.png" alt="Image 3">
+          <p>This is a text.</p>
+        </div>
+        <div class="gallery-row reverse">
+          <p>This is a text.</p>
+          <img class="image" src="image+4.png" alt="Image 4">
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <h2>This is the Footer section</h2>
+      </div>
+    </footer>
+  </body>
+</html>
