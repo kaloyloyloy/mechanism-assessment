@@ -4,155 +4,412 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
+      :root {
+        /* Palette */
+        --slate: #424b54;
+        --slate-deep: #2f363d;
+        --sage: #93a8ac;
+        --sage-wash: #eef2f2;
+        --sage-soft: #d6dfe0;
+        --white: #ffffff;
+
+        /* Spacing scale (4px base) */
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --space-12: 48px;
+        --space-16: 64px;
+        --space-24: 96px;
+
+        /* Layout roles */
+        --gutter: clamp(16px, 4vw, 40px);
+        --section-y: clamp(var(--space-16), 9vw, 128px);
+        --container: 1200px;
+        --radius: 4px;
+
+        /* Type */
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "Open Sans", system-ui, sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scrollbar-color: var(--sage) var(--sage-wash);
+      }
+
       body {
         margin: 0;
-        font-family: "Open Sans", sans-serif;
-        color: #424b54;
-        background: #ffffff;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--slate);
+        background: var(--white);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--sage);
+        color: var(--slate-deep);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--slate);
+        outline-offset: 3px;
       }
 
       h1,
+      h2,
       h3 {
-        font-family: "Playfair Display", serif;
+        margin: 0;
+        text-wrap: balance;
+      }
+
+      h1,
+      h3,
+      .section-title {
+        font-family: var(--font-display);
+        font-weight: 600;
+        color: var(--slate-deep);
+      }
+
+      p {
+        margin: 0;
+        max-width: 65ch;
+        text-wrap: pretty;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
       }
 
       .container {
-        max-width: 1000px;
+        max-width: var(--container);
         margin: 0 auto;
-        padding: 0 16px;
+        padding: 0 var(--gutter);
       }
 
-      header,
-      footer {
-        background: #424b54;
-        color: #ffffff;
-        padding: 10px 0;
+      /* Header and footer */
+      .site-header,
+      .site-footer {
+        background: var(--slate);
+        color: var(--white);
       }
 
-      section {
-        padding: 40px 0;
-        border-bottom: 1px solid #93a8ac;
-      }
-
-      .image {
-        background: #93a8ac;
-        height: 250px;
+      .site-header .container,
+      .site-footer .container {
         display: flex;
         align-items: center;
-        justify-content: center;
+        min-height: 72px;
       }
 
-      .hero-content,
-      .gallery-row {
+      .brand {
+        margin: 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .site-footer .container {
+        min-height: 120px;
+      }
+
+      .site-footer .brand {
+        font-weight: 400;
+        color: var(--sage-soft);
+      }
+
+      /* Sections */
+      section {
+        padding: var(--section-y) 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        margin-bottom: var(--space-12);
+      }
+
+      /* Hero */
+      .hero {
+        padding-top: clamp(var(--space-12), 7vw, var(--space-24));
+      }
+
+      .hero-content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 5fr 7fr;
+        gap: clamp(var(--space-8), 5vw, var(--space-16));
         align-items: center;
-        margin-bottom: 30px;
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 1.4rem + 4.5vw, 4.5rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-subtitle {
+        margin-top: var(--space-6);
+        font-family: var(--font-body);
+        font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+        font-weight: 600;
+        line-height: 1.35;
+        color: var(--slate);
+      }
+
+      .hero-copy p {
+        margin-top: var(--space-3);
+        font-size: 1.125rem;
+      }
+
+      .hero-media {
+        margin: 0;
+      }
+
+      .hero-media img {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        border-radius: var(--radius);
+        background: var(--sage-soft);
+      }
+
+      /* Testimonials */
+      .testimonials {
+        background: var(--sage-wash);
       }
 
       .testimonials-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-12) clamp(var(--space-8), 4vw, var(--space-16));
+        margin: 0;
+        padding: 0;
+        list-style: none;
       }
 
-      .testimonial .image {
-        width: 80px;
-        height: 80px;
+      .testimonial {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        margin: 0;
+        padding-top: var(--space-6);
+        border-top: 1px solid var(--sage);
       }
 
-      img.image {
+      .testimonial blockquote {
+        margin: 0;
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: var(--slate-deep);
+      }
+
+      .testimonial figcaption {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        margin-top: auto;
+      }
+
+      .avatar {
+        flex: none;
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--sage-soft);
+        color: var(--slate-deep);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .testimonial h3 {
+        font-size: 1.125rem;
+        line-height: 1.3;
+      }
+
+      /* Gallery */
+      .gallery-list {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(var(--space-12), 7vw, var(--space-24));
+      }
+
+      .gallery-row {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        grid-template-areas: "media text";
+        gap: clamp(var(--space-8), 5vw, var(--space-16));
+        align-items: center;
+        margin: 0;
+      }
+
+      .gallery-row.reverse {
+        grid-template-columns: 5fr 7fr;
+        grid-template-areas: "text media";
+      }
+
+      .gallery-row img {
+        grid-area: media;
         width: 100%;
+        aspect-ratio: 3 / 2;
         object-fit: cover;
+        border-radius: var(--radius);
+        background: var(--sage-soft);
+      }
+
+      .gallery-row figcaption {
+        grid-area: text;
+        font-size: 1.125rem;
       }
 
       @media (max-width: 768px) {
-        .hero-content,
-        .gallery-row,
         .testimonials-grid {
           grid-template-columns: 1fr;
+          max-width: 560px;
         }
 
-        .gallery-row.reverse .image {
+        .hero-content,
+        .gallery-row,
+        .gallery-row.reverse {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "media"
+            "text";
+        }
+
+        .hero-media {
           order: -1;
+        }
+
+        .gallery-row {
+          gap: var(--space-4);
+        }
+
+        .section-title {
+          margin-bottom: var(--space-8);
         }
       }
     </style>
   </head>
   <body>
-    <header>
+    <header class="site-header">
       <div class="container">
-        <h2>This is the Header section</h2>
+        <p class="brand">This is the Header section</p>
       </div>
     </header>
 
-    <section>
-      <div class="container">
-        <h2>This is the Hero section</h2>
-        <div class="hero-content">
-          <div>
-            <h1>This is an H1</h1>
-            <p>This is a paragraph.</p>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-copy">
+              <h1 id="hero-title">This is an H1</h1>
+              <h2 class="hero-subtitle">This is the Hero section</h2>
+              <p>This is a paragraph.</p>
+            </div>
+            <figure class="hero-media">
+              <img
+                src="hero+1.png"
+                alt="Hero image"
+                width="1536"
+                height="1024"
+                fetchpriority="high"
+              />
+            </figure>
           </div>
-          <img class="image" src="hero+1.png" alt="Hero image">
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <div class="container">
-        <h2>This is the Testimonial section</h2>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <div class="image">Photo</div>
-            <h3>Juan Dela Cruz</h3>
-            <p>This is a paragraph.</p>
-          </div>
-          <div class="testimonial">
-            <div class="image">Photo</div>
-            <h3>Mark Dimalanta</h3>
-            <p>This is a paragraph.</p>
-          </div>
-          <div class="testimonial">
-            <div class="image">Photo</div>
-            <h3>Arnold De Guzman</h3>
-            <p>This is a paragraph.</p>
-          </div>
+      <section class="testimonials" aria-labelledby="testimonials-title">
+        <div class="container">
+          <h2 class="section-title" id="testimonials-title">
+            This is the Testimonial section
+          </h2>
+          <ul class="testimonials-grid">
+            <li>
+              <figure class="testimonial">
+                <blockquote><p>This is a paragraph.</p></blockquote>
+                <figcaption>
+                  <span class="avatar" aria-hidden="true">Photo</span>
+                  <h3>Juan Dela Cruz</h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="testimonial">
+                <blockquote><p>This is a paragraph.</p></blockquote>
+                <figcaption>
+                  <span class="avatar" aria-hidden="true">Photo</span>
+                  <h3>Mark Dimalanta</h3>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="testimonial">
+                <blockquote><p>This is a paragraph.</p></blockquote>
+                <figcaption>
+                  <span class="avatar" aria-hidden="true">Photo</span>
+                  <h3>Arnold De Guzman</h3>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <div class="container">
-        <h2>This is the Gallery section</h2>
-        <div class="gallery-row">
-          <img class="image" src="image+1.png" alt="Image 1">
-          <p>This is a text.</p>
+      <section class="gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <h2 class="section-title" id="gallery-title">This is the Gallery section</h2>
+          <div class="gallery-list">
+            <figure class="gallery-row">
+              <img src="image+1.png" alt="Image 1" width="1448" height="1086" loading="lazy" />
+              <figcaption>This is a text.</figcaption>
+            </figure>
+            <figure class="gallery-row reverse">
+              <img src="image+2.png" alt="Image 2" width="1536" height="1024" loading="lazy" />
+              <figcaption>This is a text.</figcaption>
+            </figure>
+            <figure class="gallery-row">
+              <img src="image+3.png" alt="Image 3" width="1448" height="1086" loading="lazy" />
+              <figcaption>This is a text.</figcaption>
+            </figure>
+            <figure class="gallery-row reverse">
+              <img src="image+4.png" alt="Image 4" width="1672" height="941" loading="lazy" />
+              <figcaption>This is a text.</figcaption>
+            </figure>
+          </div>
         </div>
-        <div class="gallery-row reverse">
-          <p>This is a text.</p>
-          <img class="image" src="image+2.png" alt="Image 2">
-        </div>
-        <div class="gallery-row">
-          <img class="image" src="image+3.png" alt="Image 3">
-          <p>This is a text.</p>
-        </div>
-        <div class="gallery-row reverse">
-          <p>This is a text.</p>
-          <img class="image" src="image+4.png" alt="Image 4">
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <footer>
+    <footer class="site-footer">
       <div class="container">
-        <h2>This is the Footer section</h2>
+        <p class="brand">This is the Footer section</p>
       </div>
     </footer>
   </body>
